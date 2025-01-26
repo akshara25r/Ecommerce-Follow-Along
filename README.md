@@ -43,7 +43,9 @@ Order Management:
 
 Create, update, and view customer orders.
 
-Milestone 2: Project Setup and Login Page
+**Milestone 2: Project Setup and Login Page**
+
+
 In this milestone, we focused on setting up the initial front-end structure and implementing the login page for the application. Key achievements include:
 
 Front-End Framework:
