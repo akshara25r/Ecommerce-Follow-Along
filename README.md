@@ -1,4 +1,4 @@
-# Ecommerce-Follow-Along
+# Ecommerce-Follow-Along 
 
 Project Description
 
@@ -42,3 +42,5 @@ Add, update, and view products within the e-commerce platform.
 Order Management:
 
 Create, update, and view customer orders.
+
+this file is for self
