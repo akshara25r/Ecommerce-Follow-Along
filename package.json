@@ -16,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/akshara25r/Ecommerce-Follow-Along/issues"
   },
-  "homepage": "https://github.com/akshara25r/Ecommerce-Follow-Along#readme"
+  "homepage": "https://github.com/akshara25r/Ecommerce-Follow-Along#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9"
+  }
 }
