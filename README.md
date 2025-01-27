@@ -84,6 +84,8 @@ Configured version control with Git and included a .gitignore file to exclude se
 This milestone sets up a solid backend foundation for further development, including API implementation, user authentication, and business logic handling. It ensures that the project is structured, secure, and ready for future expansion.
 
 
+
+
 # Milestone 4: Creating User Model and Controller
 
 In this milestone, the focus was on implementing the user model and controller for managing user data and operations in the backend. Key achievements include:
