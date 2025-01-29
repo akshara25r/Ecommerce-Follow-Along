@@ -106,3 +106,19 @@ Added error handling for scenarios such as duplicate email registration and inva
 Git Integration:
 Committed progress to version control, ensuring proper documentation of changes and updates.
 This milestone provides the necessary backend infrastructure to manage user data, supporting future features like user authentication and authorization.
+
+# Milestone 5: Creating the Signup Page
+
+In this milestone, we focused on developing the signup page to enable users to create an account within the application. Key achievements include:
+Signup Page Implementation:
+Developed the Signup.jsx component with a user-friendly interface for account registration.
+Included form fields for user details such as name, email, and password.
+Form Validation:
+Added client-side validation logic to ensure proper input formatting and error messages for invalid entries.
+Integration with Routing:
+Configured navigation to and from the signup page using React Router for seamless user flow.
+Styling:
+Enhanced the design of the signup page to align with the application's overall styling for a consistent user experience.
+Code Organization:
+Refactored the code into reusable components where possible to promote cleaner and more maintainable code.
+This milestone enhances the user experience by allowing new users to register, paving the way for further integration with back-end user authentication systems.
