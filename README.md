@@ -122,3 +122,15 @@ Enhanced the design of the signup page to align with the application's overall s
 Code Organization:
 Refactored the code into reusable components where possible to promote cleaner and more maintainable code.
 This milestone enhances the user experience by allowing new users to register, paving the way for further integration with back-end user authentication systems.
+
+# Milestone 6: creating the backend endpoint for the Signup page to store all user data securely
+Create a secure backend endpoint for user signup, encrypting passwords and storing user data safely.
+
+Goals:
+-Encrypt passwords before saving. -Securely store user details in the database.
+
+Why Encrypt Passwords?
+-Protect Data: Keeps passwords safe if breached. -Privacy: Prevents password visibility. -Compliance: Meets GDPR, PCI-DSS standards. -Security: Thwarts password theft.
+
+Steps:
+-Encrypt Passwords: Use bcrypt to hash passwords. -Store hashed passwords in the database. -Store User Data: -Save user details (name, email, etc.) securely. -Ensure passwords are encrypted.
