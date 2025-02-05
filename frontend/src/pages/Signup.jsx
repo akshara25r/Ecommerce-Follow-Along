@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import styles from "../styles/styles"
+import styles from "../styles/styles";
 import { Link } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
+import axios from 'axios';
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,6 @@ const Signup = () => {
       console.log("File path:", filePath);
       setAvatar(file);
     }
-    
   };
 
 
@@ -31,7 +31,6 @@ const Signup = () => {
     newForm.append("name", name);
     newForm.append("email", email);
     newForm.append("password", password);
-  
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -39,7 +38,11 @@ const Signup = () => {
       },
     };
 
-  
+    axios.post("http://localhost:8000/api/v2/user/create-user", newForm, config).then((res) => {
+      console.log(res.data);
+    }).catch((err) => {
+      console.log(err);
+    });
   };
 
   return (
@@ -132,7 +135,6 @@ const Signup = () => {
               ></label>
               <div className="mt-2 flex items-center">
                 <span className="inline-block h-8 w-8 rounded-full overflow-hidden">
-                    
                   {avatar ? (
                     <img
                       src={URL.createObjectURL(avatar)}
