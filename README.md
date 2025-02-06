@@ -135,6 +135,7 @@ Why Encrypt Passwords?
 Steps:
 -Encrypt Passwords: Use bcrypt to hash passwords. -Store hashed passwords in the database. -Store User Data: -Save user details (name, email, etc.) securely. -Ensure passwords are encrypted.
 
+
 # Milestone 7: Creating the Login Endpoint
 In this milestone, we focused on implementing a secure and efficient login endpoint for user authentication. Key achievements include:
 
