@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const ErrorHandler = require("./middleware/error");
 const cookieParser = require("cookie-parser");
@@ -16,6 +17,12 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
       path: "backend/config/.env",
     });
 };
+// Allow CORS for Development Only
+if (process.env.NODE_ENV === 'development') {
+  const cors = require('cors');
+  app.use(cors({ origin: 'http://localhost:5173' }));
+}
+
 //import Routes
 const user = require("./controller/user");
 

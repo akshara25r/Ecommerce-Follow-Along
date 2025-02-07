@@ -98,42 +98,42 @@ router.post(
 );
 
 // Account activation
-router.post(
-  "/activation",
-  catchAsyncErrors(async (req, res, next) => {
-    const { activation_token } = req.body;
+// router.post(
+//   "/activation",
+//   catchAsyncErrors(async (req, res, next) => {
+//     const { activation_token } = req.body;
 
-    try {
-      const newUser = jwt.verify(activation_token, process.env.ACTIVATION_SECRET);
+//     try {
+//       const newUser = jwt.verify(activation_token, process.env.ACTIVATION_SECRET);
 
-      if (!newUser) {
-        return next(new ErrorHandler("Invalid token", 400));
-      }
+//       if (!newUser) {
+//         return next(new ErrorHandler("Invalid token", 400));
+//       }
 
-      const { name, email, password, avatar } = newUser;
+//       const { name, email, password, avatar } = newUser;
 
-      const existingUser = await User.findOne({ email });
-      if (existingUser) {
-        return next(new ErrorHandler("User already exists", 400));
-      }
+//       const existingUser = await User.findOne({ email });
+//       if (existingUser) {
+//         return next(new ErrorHandler("User already exists", 400));
+//       }
 
-      const user = await User.create({
-        name,
-        email,
-        password,
-        avatar,
-      });
+//       const user = await User.create({
+//         name,
+//         email,
+//         password,
+//         avatar,
+//       });
 
-      sendToken(user, 200, res);
-    } catch (error) {
-      console.log("Activation error:", error);
-      return next(new ErrorHandler("Invalid token", 400));
-    }
-  })
-);
+//       sendToken(user, 200, res);
+//     } catch (error) {
+//       console.log("Activation error:", error);
+//       return next(new ErrorHandler("Invalid token", 400));
+//     }
+//   })
+// );
 
-const createActivationToken = (user) => {
-  return jwt.sign(user, process.env.ACTIVATION_SECRET, { expiresIn: "35m" });
-};
+// const createActivationToken = (user) => {
+//   return jwt.sign(user, process.env.ACTIVATION_SECRET, { expiresIn: "35m" });
+// };
 
 module.exports = router;
