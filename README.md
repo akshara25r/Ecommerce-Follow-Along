@@ -1,4 +1,4 @@
-# Ecommerce-Follow-Along
+# Ecommerce-Follow-Along 
 
 Project Description
 
@@ -133,7 +133,6 @@ Why Encrypt Passwords?
 -Protect Data: Keeps passwords safe if breached. -Privacy: Prevents password visibility. -Compliance: Meets GDPR, PCI-DSS standards. -Security: Thwarts password theft.
 
 Steps:
--Encrypt Passwords: Use bcrypt to hash passwords. -Store hashed passwords in the database. -Store User Data: -Save user details (name, email, etc.) securely. -Ensure passwords are encrypted.
 
 # Milestone 7: Creating the Login Endpoint
 In this milestone, we focused on implementing a secure and efficient login endpoint for user authentication. Key achievements include:
@@ -171,4 +170,4 @@ Utilized grid layout and flexbox to ensure a visually consistent and user-friend
 Ensured the card component is modular and adaptable for use across different pages of the application.
 4. Code Submission:
 Pushed the updated code to the GitHub repository.
-Verified that the repository is publicly accessible for evaluation.
+
