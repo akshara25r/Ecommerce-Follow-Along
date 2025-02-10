@@ -26,9 +26,10 @@ if (process.env.NODE_ENV === 'development') {
 
 //import Routes
 const user = require("./controller/user");
+const product = require('./controller/product');
 
 app.use("/api/v2/user", user);
-
+app.use("/api/v2/product", product);
 // it's for ErrorHandling
 app.use(ErrorHandler);
 
