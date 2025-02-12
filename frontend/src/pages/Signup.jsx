@@ -1,20 +1,18 @@
 /* eslint-disable no-unused-vars */
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import styles from "../styles/styles";
 import { Link } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
-import axios from 'axios';
-
+import axios from "axios";
+import ValidationFormObject from "../../validation";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
-
+  const [errors, setErrors] = useState({});
   const handleFileSubmit = (e) => {
-    console.log("handle submit function")
     const file = e.target.files[0];
     if (file) {
       const filePath = URL.createObjectURL(file);
@@ -22,32 +20,42 @@ const Signup = () => {
       setAvatar(file);
     }
   };
-
-
+  const validateFields = () => {
+    const nameError = ValidationFormObject.validteName(name);
+    const emailError = ValidationFormObject.validteEmail(email);
+    const passwordError = ValidationFormObject.validtePass(password);
+    const newErrors = {};
+    if (nameError !== true) newErrors.name = nameError;
+    if (emailError !== true) newErrors.email = emailError;
+    if (passwordError !== true) newErrors.password = passwordError;
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Return true if no errors
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateFields()) {
+      return; // Stop submission if validation fails
+    }
     const newForm = new FormData();
     newForm.append("file", avatar);
     newForm.append("name", name);
     newForm.append("email", email);
     newForm.append("password", password);
-    console.log("newform", newForm.entries())
-
-   
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
         "Accept": "any",
       },
     };
+//axios request
+    axios.post("http://localhost:8000/api/v2/user/create-user", newForm, config).then((res)=>{
+      console.log("resul",res.data);
+    }).catch((err)=>{
+      console.log("error",err.message);
+    })
 
-    axios.post("http://localhost:8000/api/v2/user/create-user", newForm, config).then((res) => {
-      console.log(res.data);
-    }).catch((err) => {
-      console.log(err);
-    });
-  };
-
+    
+};
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -70,14 +78,17 @@ const Signup = () => {
                   type="text"
                   name="name"
                   autoComplete="name"
-                  required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className={`appearance-none block w-full px-3 py-2 border ${
+                    errors.name ? "border-red-500" : "border-gray-300"
+                  } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+                )}
               </div>
             </div>
-
             <div>
               <label
                 htmlFor="email"
@@ -90,14 +101,17 @@ const Signup = () => {
                   type="email"
                   name="email"
                   autoComplete="email"
-                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className={`appearance-none block w-full px-3 py-2 border ${
+                    errors.email ? "border-red-500" : "border-gray-300"
+                  } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                )}
               </div>
             </div>
-
             <div>
               <label
                 htmlFor="password"
@@ -110,10 +124,11 @@ const Signup = () => {
                   type={visible ? "text" : "password"}
                   name="password"
                   autoComplete="current-password"
-                  required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className={`appearance-none block w-full px-3 py-2 border ${
+                    errors.password ? "border-red-500" : "border-gray-300"
+                  } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                 />
                 {visible ? (
                   <AiOutlineEye
@@ -128,9 +143,11 @@ const Signup = () => {
                     onClick={() => setVisible(true)}
                   />
                 )}
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+                )}
               </div>
             </div>
-
             <div>
               <label
                 htmlFor="avatar"
@@ -164,7 +181,6 @@ const Signup = () => {
                 </label>
               </div>
             </div>
-
             <div>
               <button
                 type="submit"
@@ -173,7 +189,7 @@ const Signup = () => {
                 Submit
               </button>
             </div>
-            <div className={`${styles.noramlFlex} w-full`}>
+            <div className="flex items-center w-full">
               <h4>Already have an account?</h4>
               <Link to="/login" className="text-blue-600 pl-2">
                 Sign In
@@ -185,5 +201,5 @@ const Signup = () => {
     </div>
   );
 };
-
 export default Signup;
+

@@ -208,3 +208,19 @@ Saved product information to MongoDB using Mongoose models.
 Enforced strict validation to prevent invalid or incomplete product entries.
 Returned appropriate error messages for missing or incorrect data inputs.
 
+# Milestone 11: Fetching and Displaying Product Data
+In this milestone, we focused on retrieving product data from the backend and dynamically displaying it in the frontend. Key achievements include:
+
+1. Backend: Creating an API Endpoint to Fetch All Products
+Developed a GET endpoint (/api/products) in the backend to send all product data to the frontend.
+Implemented MongoDB queries using Mongoose to retrieve all stored products.
+Ensured error handling to manage potential issues in fetching data.
+2. Frontend: Fetching Data from API
+Created an API call function using fetch or axios in React to retrieve product data from the backend.
+Managed the fetched data using React useState and useEffect hooks to ensure dynamic updates.
+3. Displaying Products Dynamically
+Passed the fetched product data to a ProductCard component.
+Used the product details (name, image, price, etc.) as props to display them dynamically.
+Applied responsive CSS styling to create a visually appealing product grid layout.
+
+
