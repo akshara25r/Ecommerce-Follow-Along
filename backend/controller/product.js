@@ -73,6 +73,7 @@ router.post('/create-product', pupload.array('images', 10), async (req, res) => 
 });
 
 // Route: Get all products
+// This is a backend endpoint that will take all the products data from mongodb database and send to front end.
 router.get('/get-products', async (req, res) => {
     try {
         const products = await Product.find();
@@ -91,5 +92,26 @@ router.get('/get-products', async (req, res) => {
         res.status(500).json({ error: 'Server error. Could not fetch products.' });
     }
 });
+//
+router.get('/my-products', async (req, res) => {
+    const { email } = req.query;
+    try {
+        const products = await Product.find({ email });
+        const productsWithFullImageUrl = products.map(product => {
+            if (product.images && product.images.length > 0) {
+                product.images = product.images.map(imagePath => {
+                    return imagePath;
+                });
+            }
+            return product;
+        });
+        res.status(200).json({ products: productsWithFullImageUrl });
+    } catch (err) {
+        console.error(' Server error:', err);
+        res.status(500).json({ error: 'Server error. Could not fetch products.' });
+    }
+}
+);
+
 
 module.exports = router;
