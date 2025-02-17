@@ -10,9 +10,11 @@ function App() {
     <Routes>
     <Route path='/' element={<Home/>}/>
     <Route path='/login' element={<Login/>}/>
-    <Route path='/signup' element={<Signup/>}/>
-    <Route path='/createProduct' element={<CreateProduct/>}/>
-    <Route path="/myproducts" element={<MyProducts/>} />
+    <Route path='/create-user' element={<Signup/>}/>
+    <Route path='/create-product' element={<CreateProduct/>}/>  
+    {/* For edit product by id */}
+    <Route path="/create-product/:id" element={<CreateProduct />} />
+    <Route path="/my-products" element={<MyProducts/>} />
     </Routes>
     </BrowserRouter>
   );
