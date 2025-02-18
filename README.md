@@ -259,3 +259,22 @@ Future Enhancements & Experimentation
 Admin-Only Access: Restrict update functionality to authorized users, such as shop owners or admins.
 Real-Time Updates: Implement real-time data updates on the product listing page.
 Optimized Form Design: Enhance the form with file uploads for updating product images and improved field validation.
+
+# Milestone 14: Deleting Product Data from MongoDB
+In this milestone, we focused on implementing delete functionality for product data, allowing users to remove existing product records from the database. Key achievements include:
+
+Backend: Creating a Delete Endpoint
+Developed a DELETE endpoint to remove product data from MongoDB using the product ID.
+Used Mongoose to find and delete the product by its ID.
+Implemented error handling to manage scenarios where the product ID does not exist.
+
+Frontend: Delete Button and Request Handling
+Added a Delete button to each product card.
+Clicking the Delete button sends a request to the delete endpoint with the product ID.
+Implemented a confirmation dialog to ensure users intend to delete the product.
+Updated the product list dynamically to remove the deleted product without refreshing the page.
+
+UI and UX Enhancements
+Provided feedback on successful or failed delete operations.
+Enhanced the user experience with a clean and responsive UI for managing product deletions.
+

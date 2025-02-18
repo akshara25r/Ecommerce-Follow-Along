@@ -45,7 +45,7 @@ console.log("req",name, description, category, tags, price, stock, email )
     try {
         // Check if user exists
         const user = await User.findOne({ email });
-        if (user) {
+        if (!user) {
             return res.status(400).json({ error: 'Email does not exist in the users database' });
         }
 
@@ -95,6 +95,7 @@ router.get('/get-products', async (req, res) => {
 
 router.get('/my-products', async (req, res) => {
     const { email } = req.query;
+    console.log(email)
     try {
         const products = await Product.find({ email });
         const productsWithFullImageUrl = products.map(product => {
@@ -176,6 +177,21 @@ router.put('/update-product/:id', pupload.array('images', 10), async (req, res) 
     } catch (err) {
         console.error('Server error:', err);
         res.status(500).json({ error: 'Server error. Could not update product.' });
+    }
+});
+
+router.delete('/delete-product/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const existingProduct = await Product.findById(id);
+        if (!existingProduct) {
+            return res.status(404).json({ error: 'Product not found.' });
+        }
+        await existingProduct.deleteOne();
+        res.status(200).json({ message: '✅ Product deleted successfully' });
+    } catch (err) {
+        console.error('Server error:', err);
+        res.status(500).json({ error: 'Server error. Could not delete product.' });
     }
 });
 
