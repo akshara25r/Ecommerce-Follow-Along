@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import axios from 'axios'
 function Myproduct({ _id, name, images, description, price }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const navigate = useNavigate();
@@ -19,6 +19,22 @@ function Myproduct({ _id, name, images, description, price }) {
 
     const handleEdit = () => {
         navigate(`/create-product/${_id}`);
+    };
+
+    const handleDelete = async () => {
+        try {
+            const response = await axios.delete(
+                `http://localhost:8000/api/v2/product/delete-product/${_id}`
+            );
+            if (response.status === 200) {
+                alert("Product deleted successfully!");
+                // Reload the page or fetch products again
+                window.location.reload();
+            }
+        } catch (err) {
+            console.error("Error deleting product:", err);
+            alert("Failed to delete product.");
+        }
     };
 
     return (
@@ -42,6 +58,14 @@ function Myproduct({ _id, name, images, description, price }) {
                 >
                     Edit
                 </button>
+
+                <button
+                    onClick={handleDelete}
+                    className="w-full text-white px-4 py-2 rounded-md bg-red-600 hover:bg-red-400 transition duration-300 mt-2"
+                >
+                    Delete
+                </button>
+
             </div>
         </div>
     );
