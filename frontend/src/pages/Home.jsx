@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import Product from "../components/Product";
+import Nav from "../components/nav";
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true); // For loading state
@@ -36,6 +37,8 @@ export default function Home() {
   }
 
   return (
+    <>
+     <Nav />
     <div className="w-full min-h-screen bg-neutral-800">
       <h1 className="text-3xl text-center text-white py-6">Product Gallery</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
@@ -44,5 +47,6 @@ export default function Home() {
         ))}
       </div>
     </div>
+    </>
   );
 }
