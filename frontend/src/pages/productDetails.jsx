@@ -11,7 +11,7 @@ export default function ProductDetails() {
 	const [product, setProduct] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const [quantity, setQuantity] = useState(1); // 1. Initialize quantity state
+	const [quantity, setQuantity] = useState(0); // 1. Initialize quantity state
 
 	useEffect(() => {
 		const fetchProduct = async () => {
