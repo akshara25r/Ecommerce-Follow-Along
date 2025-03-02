@@ -291,3 +291,38 @@ Implemented smooth navigation between these pages using React Router.
 Responsive Design
 Used CSS Flexbox and media queries to ensure the Navbar is fully responsive on all screen sizes (mobile, tablet, desktop).
 Added a hamburger menu for smaller screens to toggle the navigation links.
+
+
+# Milestone 16: Product Info Page with Quantity Selection and Add to Cart
+In this milestone, we focused on creating a dedicated Product Info Page to display detailed information for each product and allow users to select quantity and add the product to their cart.
+
+Frontend: Product Info Page
+Designed a new Product Info Page that shows all relevant product details such as:
+Product Name
+Product Description
+Product Price
+Product Images
+Added a quantity selector that allows users to choose how many units they want to add to their cart.
+Implemented an Add to Cart button to add the selected product and quantity to the user's cart.
+React Router Integration
+Used React Router to navigate to the Product Info Page when a product card is clicked on the homepage or product listing page.
+Passed the product ID through the URL to fetch and display product details on the new page.
+State Management and API Integration
+Fetched product details from the backend using the product ID.
+Managed the selected quantity using React state.
+Implemented a function to handle adding the product to the cart, updating the cart state in the application.
+
+# Milestone 17: Adding Products to Cart
+In this milestone, we focused on implementing the functionality to add products to the cart. Key achievements include
+
+Frontend: Adding Products to Cart
+Designed a new Cart component that displays the products added to the cart, along with their
+Implemented a function to handle adding products to the cart, updating the cart state in the application.
+Used React state to manage the cart items and their quantities.
+Backend: API Integration
+Created a new API endpoint to handle adding products to the cart.
+Implemented server-side logic to update the cart state in the database.
+State Management and API Integration
+Fetched the updated cart state from the backend after adding a product.
+Managed the cart state using React state.
+
