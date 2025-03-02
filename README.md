@@ -311,3 +311,18 @@ State Management and API Integration
 Fetched product details from the backend using the product ID.
 Managed the selected quantity using React state.
 Implemented a function to handle adding the product to the cart, updating the cart state in the application.
+
+# Milestone 17: Adding Products to Cart
+In this milestone, we focused on implementing the functionality to add products to the cart. Key achievements include
+
+Frontend: Adding Products to Cart
+Designed a new Cart component that displays the products added to the cart, along with their
+Implemented a function to handle adding products to the cart, updating the cart state in the application.
+Used React state to manage the cart items and their quantities.
+Backend: API Integration
+Created a new API endpoint to handle adding products to the cart.
+Implemented server-side logic to update the cart state in the database.
+State Management and API Integration
+Fetched the updated cart state from the backend after adding a product.
+Managed the cart state using React state.
+
