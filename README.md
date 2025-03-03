@@ -326,3 +326,36 @@ State Management and API Integration
 Fetched the updated cart state from the backend after adding a product.
 Managed the cart state using React state.
 
+# Milestone 18: Creating an end point for cart page
+In this milestone, we implemented a backend endpoint to fetch all the products inside a user's cart. This functionality is essential for displaying the cart contents on the cart page.
+
+Backend: API Integration
+Created a new API endpoint to fetch all products in a user's cart.
+Implemented server-side logic to retrieve the cart contents from the database.
+Frontend: Cart Page
+Designed a new Cart Page component that displays the products in the user's cart.
+Used React Router to navigate to the Cart Page.
+State Management and API Integration
+Fetched the cart contents from the backend using the API endpoint. The final product will have the following features:
+A user can view all products on the homepage.
+A user can view product details on a dedicated product info page.
+A user can add products to their cart.
+A user can view their cart contents on the cart page.
+
+# Milestone 19: Shopping Cart UI with API Endpoint for Updating Product Quantity
+In this milestone, we focused on implementing the shopping cart UI and API endpoint for updating product quantity.
+
+Frontend: Shopping Cart UI
+Designed a new Cart component that displays the products in the user's cart, along with their quantities
+Implemented a function to handle updating the quantity of a product in the cart
+Used React state to manage the cart items and their quantities
+Backend: API Endpoint for Updating Product Quantity
+Created a new API endpoint to update the quantity of a product in the cart
+Implemented server-side logic to update the cart state in the database
+State Management and API Integration
+Fetched the updated cart state from the backend after updating a product quantity The final product will have the following features:
+A user can view all products on the homepage
+A user can view product details on a dedicated product info page
+A user can add products to their cart
+A user can view their cart contents on the cart page
+A user can update the quantity of products in their cart
