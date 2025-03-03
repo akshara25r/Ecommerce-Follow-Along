@@ -341,3 +341,21 @@ A user can view all products on the homepage.
 A user can view product details on a dedicated product info page.
 A user can add products to their cart.
 A user can view their cart contents on the cart page.
+
+# Milestone 19: Shopping Cart UI with API Endpoint for Updating Product Quantity
+In this milestone, we focused on implementing the shopping cart UI and API endpoint for updating product quantity.
+
+Frontend: Shopping Cart UI
+Designed a new Cart component that displays the products in the user's cart, along with their quantities
+Implemented a function to handle updating the quantity of a product in the cart
+Used React state to manage the cart items and their quantities
+Backend: API Endpoint for Updating Product Quantity
+Created a new API endpoint to update the quantity of a product in the cart
+Implemented server-side logic to update the cart state in the database
+State Management and API Integration
+Fetched the updated cart state from the backend after updating a product quantity The final product will have the following features:
+A user can view all products on the homepage
+A user can view product details on a dedicated product info page
+A user can add products to their cart
+A user can view their cart contents on the cart page
+A user can update the quantity of products in their cart
