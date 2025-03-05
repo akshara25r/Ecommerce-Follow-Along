@@ -359,3 +359,18 @@ A user can view product details on a dedicated product info page
 A user can add products to their cart
 A user can view their cart contents on the cart page
 A user can update the quantity of products in their cart
+
+# Milestone 20: Building a Profile Page Frontend with User Data Endpoint
+In this milestone, we implemented the frontend for the profile page, fetching user data from the backend API
+
+Frontend: Profile Page
+Designed a new Profile Page component that displays user data
+Implemented a function to fetch user data from the backend API
+Used React state to manage user data
+Backend: API Endpoint for User Data
+Created a new API endpoint to fetch user data
+Implemented server-side logic to retrieve user data from the database
+State Management and API Integration
+Fetched user data from the backend API The final product will have the following features:
+A user can view their profile page
+A user can view their user data on the profile page
