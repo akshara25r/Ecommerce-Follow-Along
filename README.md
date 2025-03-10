@@ -374,3 +374,28 @@ State Management and API Integration
 Fetched user data from the backend API The final product will have the following features:
 A user can view their profile page
 A user can view their user data on the profile page
+
+# Milestone 21: Implementing the Address Form Page
+Learning Goals 🎯
+By the end of this milestone, you will:
+
+Create a frontend form to collect user address details.
+Store address information using state management.
+Implement navigation from the Profile Page to the Address Form.
+1. Frontend Updates: Address Form Page
+Designed an address input form to collect:
+Country
+City
+Address Line 1
+Address Line 2
+ZIP Code
+Address Type (Home/Work/Other)
+Created a state to store and manage the form input.
+Ensured proper form validation for required fields.
+2. Navigation & User Flow
+Clicking "Add Address" on the Profile Page redirects to the Address Form.
+Implemented smooth navigation handling to improve user experience.
+3. Future Enhancements & Experimentation
+Save Address to Database: Store the address using a backend API.
+Auto-fill Option: Enable users to update an existing address instead of entering a new one.
+Google Maps API Integration: Allow users to select their address using a map.
