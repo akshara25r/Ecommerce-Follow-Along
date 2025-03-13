@@ -436,3 +436,4 @@ Order status (pending, shipped, delivered)
 Total price
 Timestamp
 Implemented an endpoint to store orders in the database.
+
