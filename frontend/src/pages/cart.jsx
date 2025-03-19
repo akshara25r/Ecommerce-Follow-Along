@@ -1,9 +1,9 @@
 import CartProduct from '../components/CartProduct';
 import Nav from '../components/nav';
 import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
-
+  const navigate =useNavigate()
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -25,6 +25,10 @@ const Cart = () => {
     
       console.log("Products:", products);
 
+
+      const handlePlaceOrder = () => {
+        navigate('/select-address'); // Navigate to the Select Address page
+      };
     return (
         <div className='w-full h-screen'>
             <Nav />
@@ -40,6 +44,16 @@ const Cart = () => {
                             ))
                         }
                     </div>
+
+                    <div className='w-full p-4 flex justify-end'>
+                      <button
+                        onClick={handlePlaceOrder}
+                        className='bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600'
+                        >
+                        Place Order
+                      </button>
+                    </div>
+                    
                 </div>
             </div>
         </div>

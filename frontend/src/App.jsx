@@ -2,7 +2,7 @@
 
 import './App.css';
 import React from 'react';
-import {Login,Signup,Home, CreateProduct, MyProducts, Cart, ProductDetails, Profile, CreateAddress} from "./Routes/Routes"
+import {Login,Signup,Home, CreateProduct, MyProducts, Cart, ProductDetails, Profile, CreateAddress, SelectAddress} from "./Routes/Routes"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
     <Route path="/product/:id" element={<ProductDetails />} />
     <Route path="/profile" element={<Profile />} />
     <Route path='/create-address' element={<CreateAddress />} />
+    <Route path='/select-address' element={<SelectAddress/>}/>
     </Routes>
     </BrowserRouter>
   );
