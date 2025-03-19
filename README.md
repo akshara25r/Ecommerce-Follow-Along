@@ -437,3 +437,16 @@ Total price
 Timestamp
 Implemented an endpoint to store orders in the database.
 
+# Milestone 24: Order Confirmation Page
+Learning Goals 🎯
+By the end of this milestone, you will:
+
+Create an Order Confirmation Page.
+Display ordered *products, **delivery address, and *total price.
+Implement a "Place Order" button for final confirmation.
+1. Frontend Updates: Order Confirmation Page
+Designed an Order Summary Section displaying:
+All products being ordered with names, images, and prices.
+Selected delivery address chosen in the previous step.
+Total order value, summing up the prices of all cart items.
+Placed a "Place Order" button at the bottom to confirm the purchase.

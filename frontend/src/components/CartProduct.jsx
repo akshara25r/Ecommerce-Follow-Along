@@ -5,7 +5,7 @@ import { IoIosAdd } from "react-icons/io";
 import { IoIosRemove } from "react-icons/io";
 
 export default function CartProduct({ _id, name, images, quantity, price }) {
-	const [currentIndex, setCurrentIndex] = useState(0);
+	const [currentIndex, setCurrentIndex] = useState(1);
 	const [quantityVal, setQuantityVal] = useState(quantity);
 
 	useEffect(() => {

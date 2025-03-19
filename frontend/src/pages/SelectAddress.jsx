@@ -1,21 +1,26 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import Nav from '../components/nav'; 
+import axios from 'axios';
+import Nav from '../components/nav'; // Ensure correct casing
 import { useNavigate } from 'react-router-dom';
+
 const SelectAddress = () => {
     const [addresses, setAddresses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const userEmail = 'akshara@gmail.com'; // Replace with dynamic email in production
+
+    // Replace with dynamic email in production
+    const userEmail = 'akshara@gmail.com';
 
     useEffect(() => {
         const fetchAddresses = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/v2/user/addresses?email=${encodeURIComponent(userEmail)}`);
+                const response = await axios.get('http://localhost:8000/api/v2/user/addresses', {
+                    params: { email: userEmail },
+                });
 
-                if (!response.ok) {
-                    // Handle specific HTTP errors
+                if (response.status !== 200) {
                     if (response.status === 404) {
                         throw new Error('User not found.');
                     } else if (response.status === 400) {
@@ -25,9 +30,8 @@ const SelectAddress = () => {
                     }
                 }
 
-                const data = await response.json();
+                const data = response.data;
 
-                // Validate the response structure
                 if (data && Array.isArray(data.addresses)) {
                     setAddresses(data.addresses);
                 } else {
@@ -36,7 +40,7 @@ const SelectAddress = () => {
                 }
             } catch (err) {
                 console.error('Error fetching addresses:', err);
-                setError(err.message || 'An unexpected error occurred.');
+                setError(err.response?.data?.message || err.message || 'An unexpected error occurred.');
             } finally {
                 setLoading(false);
             }
@@ -46,8 +50,8 @@ const SelectAddress = () => {
     }, [userEmail]);
 
     const handleSelectAddress = (addressId) => {
-        // Optionally, pass the entire address object instead of just the ID
-        navigate('/order-confirmation', { state: { addressId } });
+        // Navigate to Order Confirmation with the selected address ID and email
+        navigate('/order-confirmation', { state: { addressId, email: userEmail } });
     };
 
     // Render loading state
