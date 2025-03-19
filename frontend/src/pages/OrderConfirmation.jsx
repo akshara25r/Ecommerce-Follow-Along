@@ -77,26 +77,34 @@ const OrderConfirmation = () => {
 
     const handlePlaceOrder = async () => {
         try {
-            setLoading(true);
-            const response = await axios.post('http://localhost:8000/api/v2/order/place', {
+            // Map cartItems to match the backend expected format
+            const orderItems = cartItems.map(item => ({
+                product: item._id,
+                name: item.name,
+                quantity: item.quantity,
+                price: item.price,
+                image: item.images && item.images.length > 0 ? item.images[0] : '/default-avatar.png'
+            }));
+
+            // Construct payload with email, shippingAddress, and orderItems
+            const payload = {
                 email,
-                addressId,
-            });
+                shippingAddress: selectedAddress,
+                orderItems,
+            };
 
-            if (response.status !== 200 && response.status !== 201) {
-                throw new Error(response.data.message || 'Failed to place order.');
-            }
+            // Send POST request to place orders
+            const response = await axios.post('http://localhost:8000/api/v2/orders/place-order', payload);
+            console.log('Orders placed successfully:', response.data);
 
-            const data = response.data;
-            console.log('Order placed:', data.order);
-            navigate('/order-success', { state: { order: data.order } });
-        } catch (err) {
-            console.error('Error placing order:', err);
-            setError(err.response?.data?.message || err.message || 'An unexpected error occurred while placing the order.');
-        } finally {
-            setLoading(false);
+            // Navigate to an order success page or display a success message
+            navigate('/order-success'); // Adjust route as needed
+        } catch (error) {
+            console.error('Error placing order:', error);
+            // Optionally update error state to display an error message to the user
         }
     };
+
 
     if (loading) {
         return (
