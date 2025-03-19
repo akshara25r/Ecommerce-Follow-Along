@@ -450,3 +450,21 @@ All products being ordered with names, images, and prices.
 Selected delivery address chosen in the previous step.
 Total order value, summing up the prices of all cart items.
 Placed a "Place Order" button at the bottom to confirm the purchase.
+
+# Milestone 25: Creating Backend Endpoint for Placing an Order
+Learning Goals 🎯
+By the end of this milestone, you will:
+
+Create a backend endpoint to store orders in the database.
+Implement a function to handle order placement.
+Test the endpoint with a sample order.
+Step 1: Designing the Backend Endpoint
+Define the endpoint URL and HTTP method (e.g., POST /orders).
+Determine the request body structure (e.g., JSON with order details).
+Step 2: Implementing the Backend Endpoint
+Use a framework (e.g., Express.js) to create the endpoint.
+Handle the request body and extract order details.
+Store the order in the database using an ORM (e.g., Sequelize).
+Step 3: Testing the Endpoint
+Use a tool (e.g., Bruno) to send a sample order to the endpoint.
+Verify that the order is stored correctly in the database.
