@@ -468,3 +468,13 @@ Store the order in the database using an ORM (e.g., Sequelize).
 Step 3: Testing the Endpoint
 Use a tool (e.g., Bruno) to send a sample order to the endpoint.
 Verify that the order is stored correctly in the database.
+
+# Milestone 26: Creating Backend Endpoint for Getting All Orders
+Learning goals
+You need to create an endpoint that will receive the user mail
+You will get the mail of the user using that you need to retrive the _id of the user
+Using that _id you need to get all the orders of that user
+Send all the users orders in the response.
+
+Created backend endpoint for getting all orders
+Created an endpoint that receives a user's email, retrieves the user's _id based on the provided email, fetches all orders associated with that _id, and returns all the user's orders in the response.
