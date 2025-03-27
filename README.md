@@ -489,3 +489,26 @@ We will add my-orders page in navbar for better navigation.
 
 Created a My Orders page that sends a GET request to the my-orders endpoint created in the previous milestone. The user's email is sent to the endpoint to retrieve all their orders, which are then displayed on the page. Additionally, added the My Orders page to the navbar for improved navigation.
 
+# Milestone 29: PayPal Payment Gateway Integration
+
+In this milestone, we successfully initiated the integration of an online payment system into our application using the PayPal API, laying the groundwork for secure and seamless transactions.
+
+Key Achievements 🚀
+Learning PayPal API:
+
+Explored PayPal's developer platform to understand the API structure and sandbox testing environment.
+
+Sandbox Setup:
+
+Created and configured a PayPal Developer account.
+
+Set up a sandbox account for safe and effective payment testing.
+
+Retrieved and securely stored the sandbox account’s User ID and Client ID for integration purposes.
+
+Order Confirmation Page Enhancement:
+
+Successfully updated the order confirmation page to offer two payment options: Cash on Delivery (COD) and Online Payment.
+
+Implemented radio buttons to allow users to toggle between COD and online payment methods.
+
