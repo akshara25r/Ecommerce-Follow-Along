@@ -520,3 +520,17 @@ In this milestone, we successfully integrated PayPal for seamless online payment
 - PayPal Integration: Configured a sandbox account, installed `react-paypal-js`, and implemented PayPal's API for secure transactions.  
 - Navigation Component: Built a responsive Nav component with React Router for smooth navigation across key pages (Home, My Products, Add Product, Cart).  
 - Responsive Design: Used CSS Flexbox and media queries to ensure adaptability across all screen sizes, with a hamburger menu for mobile users.  
+# Milestone: Implementing Global State Management with Redux
+
+In this milestone, we focused on integrating Redux to manage user email globally, ensuring seamless state management across the application.  
+
+Key Achievements:
+
+State Management: Configuring Redux Store
+- Installed the `react-redux` NPM package to enable centralized state management.  
+- Created a new `store` folder containing:  
+  - `store.js`: Configured the Redux store with a `userReducer` to handle the global email state.  
+  - `userActions.js`: Defined a `setEmail` action to update the email in the global state.  
+
+Integration with React Application 
+- Wrapped the `App` component inside the `Provider` component in `index.js`, passing the store as a prop to ensure global access to the email state.  

@@ -1,9 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+/* eslint-disable react/no-deprecated */
+/* eslint-disable no-unused-vars */
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import App from "./App.jsx";
+
+ReactDOM.render(
+  <Provider store={store}>
     <App />
-  </StrictMode>,
-)
+  </Provider>,
+  document.getElementById("root")
+);
