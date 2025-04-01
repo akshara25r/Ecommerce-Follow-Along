@@ -2,15 +2,17 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../styles/styles";
-
+import { useDispatch } from 'react-redux';
+import { setUserEmail} from "../store/userActions";
 import axios from "axios";
 
 const Login = () => {
-
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:8000/api/v2/user/login", { email, password });
+      dispatch(setUserEmail(email))
       console.log(response.data);
     } catch (error) {
       console.error("There was an error logging in!", error);
