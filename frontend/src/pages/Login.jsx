@@ -1,26 +1,33 @@
 /* eslint-disable no-unused-vars */
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../styles/styles";
-import { useDispatch } from 'react-redux';
-import { setUserEmail} from "../store/userActions";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setemail } from "../store/userActions";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize navigate
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [visible, setVisible] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:8000/api/v2/user/login", { email, password });
-      dispatch(setUserEmail(email))
       console.log(response.data);
+      // Dispatch action to store email in Redux state
+      dispatch(setemail(email));
+      // Redirect to profile page after successful login
+      navigate("/");
     } catch (error) {
       console.error("There was an error logging in!", error);
     }
   };
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [visible, setVisible] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -32,14 +39,12 @@ const Login = () => {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email address
               </label>
               <div className="mt-1">
-                <input type="email"
+                <input
+                  type="email"
                   name="email"
                   autoComplete="email"
                   required
@@ -51,14 +56,12 @@ const Login = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <div className="mt-1 relative">
-                <input   type={visible ? "text" : "password"}
+                <input
+                  type={visible ? "text" : "password"}
                   name="password"
                   autoComplete="current-password"
                   required
@@ -66,7 +69,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
-                  {visible ? (
+                {visible ? (
                   <AiOutlineEye
                     className="absolute right-2 top-2 cursor-pointer"
                     size={25}
@@ -81,6 +84,7 @@ const Login = () => {
                 )}
               </div>
             </div>
+
             <div className={`${styles.noramlFlex} justify-between`}>
               <div className={`${styles.noramlFlex}`}>
                 <input
@@ -89,10 +93,7 @@ const Login = () => {
                   id="remember-me"
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                   Remember me
                 </label>
               </div>
@@ -105,6 +106,7 @@ const Login = () => {
                 </a>
               </div>
             </div>
+
             <div>
               <button
                 type="submit"
@@ -113,15 +115,15 @@ const Login = () => {
                 Submit
               </button>
             </div>
+
             <div className={`${styles.noramlFlex} w-full`}>
               <h4>Not have any account?</h4>
-              </div>
+            </div>
           </form>
         </div>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Login
+export default Login;
