@@ -5,14 +5,17 @@ import axios from "axios";
 import Nav from "../components/nav";
 import { IoIosAdd } from "react-icons/io";
 import { IoIosRemove } from "react-icons/io";
+import { useSelector } from "react-redux"; // Import useSelector
 
 export default function ProductDetails() {
 	const { id } = useParams();
 	const [product, setProduct] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const [quantity, setQuantity] = useState(0); // 1. Initialize quantity state
-	const email = "akshara@gmail.com";   
+	const [quantity, setQuantity] = useState(1);
+
+	// Get email from Redux state
+	const email = useSelector((state) => state.user.email);
 
 	useEffect(() => {
 		const fetchProduct = async () => {
@@ -21,7 +24,7 @@ export default function ProductDetails() {
 					`http://localhost:8000/api/v2/product/product/${id}`
 				);
 				console.log("Fetched product:", response.data.product);
-				setProduct(response.data.product); // Ensure correct state setting
+				setProduct(response.data.product);
 				setLoading(false);
 			} catch (err) {
 				console.error("Error fetching product:", err);
@@ -41,14 +44,30 @@ export default function ProductDetails() {
 		}
 	}, [product]);
 
-	// 2. Handler to increment quantity
+	// Handler to increment quantity
 	const handleIncrement = () => {
 		setQuantity((prevQuantity) => prevQuantity + 1);
 	};
 
-	// 3. Handler to decrement quantity, ensuring it doesn't go below 1
+	// Handler to decrement quantity, ensuring it doesn't go below 1
 	const handleDecrement = () => {
 		setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+	};
+
+	const addtocart = async () => {
+		try {
+			const response = await axios.post(
+				"http://localhost:8000/api/v2/product/cart",
+				{
+					userId: email,
+					productId: id,
+					quantity: quantity,
+				}
+			);
+			console.log("Added to cart:", response.data);
+		} catch (err) {
+			console.error("Error adding to cart:", err);
+		}
 	};
 
 	if (loading) {
@@ -76,23 +95,6 @@ export default function ProductDetails() {
 			</div>
 		);
 	}
-// add to cart function 
-	const addtocart = async () => {
-		try {
-			const response = await axios.post(
-				"http://localhost:8000/api/v2/product/cart",
-				{
-					userId: email,
-					productId: id,
-					quantity: quantity,
-				}
-			);
-			console.log("Added to cart:", response.data);
-		} catch (err) {
-			console.error("Error adding to cart:", err);
-		}
-	};
-
 
 	return (
 		<>
@@ -107,7 +109,7 @@ export default function ProductDetails() {
 									src={`http://localhost:8000${product.images[0]}`}
 									alt={product.name}
 									className="w-full h-full object-contain bsm:object-cover"
-									style={{ maxHeight: "500px" }} // Adjust the max height as needed
+									style={{ maxHeight: "500px" }}
 								/>
 							) : (
 								<div className="w-full h-64 bg-gray-200 flex items-center justify-center">
@@ -169,24 +171,21 @@ export default function ProductDetails() {
 										${product.price}
 									</p>
 								</div>
-								{/* 4. Update Quantity Section */}
+								{/* Quantity Section */}
 								<div className="flex flex-col gap-y-3">
 									<div className="text-xl font-medium text-gray-700">
 										Quantity
 									</div>
 									<div className="flex flex-row items-center gap-x-2">
-										{/* 5. Attach onClick to Increment Button */}
 										<div
 											onClick={handleIncrement}
 											className="flex justify-center items-center bg-gray-200 hover:bg-gray-300 active:translate-y-1 p-2 rounded-xl cursor-pointer"
 										>
 											<IoIosAdd />
 										</div>
-										{/* 6. Display Current Quantity */}
 										<div className="px-5 py-1 text-center bg-gray-100 rounded-xl pointer-events-none">
 											{quantity}
 										</div>
-										{/* 7. Attach onClick to Decrement Button */}
 										<div
 											onClick={handleDecrement}
 											className="flex justify-center items-center bg-gray-200 hover:bg-gray-300 active:translate-y-1 p-2 rounded-xl cursor-pointer"
@@ -198,7 +197,10 @@ export default function ProductDetails() {
 							</div>
 
 							<div className="flex flex-wrap gap-x-5 my-3">
-								<button className="bg-black text-white px-5 py-2 rounded-full hover:bg-neutral-800 hover:-translate-y-1.5 active:translate-y-0 transition-transform duration-200 ease-in-out active:duration-0 active:ease-linear" onClick={addtocart}>
+								<button
+									className="bg-black text-white px-5 py-2 rounded-full hover:bg-neutral-800 hover:-translate-y-1.5 active:translate-y-0 transition-transform duration-200 ease-in-out active:duration-0 active:ease-linear"
+									onClick={addtocart}
+								>
 									Add to Cart
 								</button>
 							</div>

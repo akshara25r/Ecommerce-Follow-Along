@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Nav from '../components/nav'; // Ensure correct casing
+import Nav from '../components/nav';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // Import useSelector
 
 const SelectAddress = () => {
     const [addresses, setAddresses] = useState([]);
@@ -10,10 +11,12 @@ const SelectAddress = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    // Replace with dynamic email in production
-    const userEmail = 'akshara@gmail.com';
+    // Retrieve email from Redux state
+    const userEmail = useSelector((state) => state.user.email);
 
     useEffect(() => {
+        // Only fetch addresses if email exists
+        if (!userEmail) return;
         const fetchAddresses = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/api/v2/user/addresses', {
@@ -54,7 +57,6 @@ const SelectAddress = () => {
         navigate('/order-confirmation', { state: { addressId, email: userEmail } });
     };
 
-    // Render loading state
     if (loading) {
         return (
             <div className='w-full h-screen flex justify-center items-center'>
@@ -63,7 +65,6 @@ const SelectAddress = () => {
         );
     }
 
-    // Render error state
     if (error) {
         return (
             <div className='w-full h-screen flex flex-col justify-center items-center'>
@@ -93,7 +94,8 @@ const SelectAddress = () => {
                                 >
                                     <div>
                                         <p className='font-medium'>
-                                            {address.address1}{address.address2 ? `, ${address.address2}` : ''}, {address.city}, {address.state}, {address.zipCode}
+                                            {address.address1}
+                                            {address.address2 ? `, ${address.address2}` : ''}, {address.city}, {address.state}, {address.zipCode}
                                         </p>
                                         <p className='text-sm text-gray-600'>{address.country}</p>
                                         <p className='text-sm text-gray-500'>Type: {address.addressType || 'N/A'}</p>

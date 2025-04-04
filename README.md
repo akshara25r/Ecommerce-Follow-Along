@@ -520,7 +520,7 @@ In this milestone, we successfully integrated PayPal for seamless online payment
 - PayPal Integration: Configured a sandbox account, installed `react-paypal-js`, and implemented PayPal's API for secure transactions.  
 - Navigation Component: Built a responsive Nav component with React Router for smooth navigation across key pages (Home, My Products, Add Product, Cart).  
 - Responsive Design: Used CSS Flexbox and media queries to ensure adaptability across all screen sizes, with a hamburger menu for mobile users.  
-# Milestone: Implementing Global State Management with Redux
+# Milestone 31: Implementing Global State Management with Redux
 
 In this milestone, we focused on integrating Redux to manage user email globally, ensuring seamless state management across the application.  
 
@@ -534,3 +534,30 @@ State Management: Configuring Redux Store
 
 Integration with React Application 
 - Wrapped the `App` component inside the `Provider` component in `index.js`, passing the store as a prop to ensure global access to the email state.  
+
+Here’s the structured document for **Milestone 32: Implementing Redux for Global State Management** based on your request:  
+
+---
+
+# Milestone 32: Enhancing Global State Management with Redux
+
+In this milestone, we extended our Redux implementation to store and access user email across all pages, ensuring a smooth user experience.  
+
+Key Steps:  
+
+Setting Up Redux for Global State Management  
+- Installed the `redux` and `react-redux` packages.  
+- Created a `store` folder containing:  
+  - `store.js`: Configured Redux with `userReducer` to handle global email state.  
+  - `userSlice.js`: Defined a `setEmail` action to update the email globally.  
+
+Integrating Redux with the React Application  
+- Wrapped the `App` component with `Provider` in `index.js` to ensure global access to the Redux store.  
+
+Storing Email in Global State (Login Page)  
+- Used the `useDispatch` hook to store the user email in global state when logging in.  
+- Updated the email state using `dispatch(setEmail(email))` inside the `handleLogin` function.  
+
+Accessing Global State Across Pages 
+- Used `useSelector` in all pages to retrieve the stored email from Redux.  
+- Ensured that the email persists throughout different components and pages.  
